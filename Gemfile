@@ -7,6 +7,7 @@ gem 'factory_girl_rails'
 gem 'capybara'
 
 gem 'bootstrap-generators'
+gem 'forecast_io'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
