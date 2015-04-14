@@ -4,6 +4,8 @@ gem 'rspec-rails'
 gem 'guard-bundler'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
+gem 'faker'
+
 gem 'capybara'
 
 gem 'bcrypt'
@@ -11,7 +13,6 @@ gem 'savon', '~> 2.0'
 
 gem 'bootstrap-generators'
 gem 'forecast_io'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
