@@ -26,18 +26,6 @@ class RiversController < ApplicationController
   def create
     @river = River.new(river_params)
 
-    # create a client for the service
-    # client = Savon.client(wsdl: 'http://www.dwr.state.co.us/HBGuest/HBGuestWebService.asmx')
-
-
-    # client.operations
-    #  => [:find_user, :list_users]
-    #
-    #  call the 'findUser' operation
-    # response = client.call(:find_user, message: { id: 42 })
-    #
-    # response.body
-    #  => { find_user_response: { id: 42, name: 'Hoff' } }
 
     respond_to do |format|
       if @river.save
@@ -84,4 +72,8 @@ class RiversController < ApplicationController
     def river_params
       params.require(:river).permit(:station, :cfs)
     end
+
+
 end
+
+
