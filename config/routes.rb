@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'pages/contact', as: 'contact'
   get 'pages/home', as: 'home'
 
-  resources :users
+  resources :users, only: [:new, :create]
 
   root 'rivers#index'
 
