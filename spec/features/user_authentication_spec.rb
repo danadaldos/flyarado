@@ -58,4 +58,21 @@ feature 'user authentication' do
     click_button 'Log in'
     expect(page).to have_content('Invalid email or password')
   end
+
+  scenario 'user can log out' do
+    user = FactoryGirl.create(:user)
+
+    user = User.where(email: user.to_s).first if user.is_a?(Symbol)
+    visit '/login'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+    expect(page).to have_content(user.email)
+    expect(page).to have_link('Log out')
+    click_link('Log out')
+    expect(page).to have_content('Logged out')
+    expect(page).to_not have_content(user.email)
+
+
+  end
 end

@@ -13,4 +13,11 @@ class SessionsController < ApplicationController
       render :login
     end
   end
+
+  def destroy
+    user = User.find(session[:id])
+    session.delete(:id)
+    redirect_to root_path,
+      notice: 'Logged out'
+  end
 end
