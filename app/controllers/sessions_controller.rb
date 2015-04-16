@@ -15,9 +15,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    user = User.find(session[:id])
-    session.delete(:id)
-    redirect_to root_path,
-      notice: 'Logged out'
+    if current_user
+      session[:id] = nil
+      redirect_to root_path,
+        notice: 'Logged out'
+    end
   end
 end
