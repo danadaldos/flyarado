@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'pages/contact', as: 'contact'
   get 'pages/home', as: 'home'
 
+  get 'login' => 'sessions#login'
+  post 'login' => 'sessions#create'
+
   resources :users, only: [:new, :create]
 
   root 'rivers#index'
