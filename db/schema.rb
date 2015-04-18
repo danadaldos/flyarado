@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414051643) do
+ActiveRecord::Schema.define(version: 20150418201905) do
 
-  create_table "rivers", force: :cascade do |t|
-    t.string   "station"
-    t.integer  "cfs"
+  create_table "stations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "latitude"
+    t.integer  "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

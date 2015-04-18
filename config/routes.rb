@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :rivers
+  resources :stations
 
   get 'pages/about', as: 'about'
   get 'pages/contact', as: 'contact'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  root 'rivers#index'
+  root 'stations#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
