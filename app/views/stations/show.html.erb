@@ -21,7 +21,7 @@
   <dd><%= @station.longitude %></dd>
 
   <dt>Forecast</dt>
-  <dd><%= @station.weather[:temperature] %></dd>
-  <dd><%= @station.weather[:summary] %></dd>
+  <div id="w_temperature"><dd><%= @station.weather[:temperature] %></dd></div>
+  <div id="w_summary"><dd ><%= @station.weather[:summary] %></dd></div>
 
 </dl>
