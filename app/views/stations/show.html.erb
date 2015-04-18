@@ -20,4 +20,8 @@
   <dt>Longitude:</dt>
   <dd><%= @station.longitude %></dd>
 
+  <dt>Forecast</dt>
+  <dd><%= @station.weather[:temperature] %></dd>
+  <dd><%= @station.weather[:summary] %></dd>
+
 </dl>
