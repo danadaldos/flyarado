@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   private
   def current_user
     @user ||= User.find(session[:id]) if session[:id]
-  rescue ActiveRecord::NotFound
+  rescue ActiveRecord::RecordNotFound
     session.delete(:id)
+    nil
   end
 end
