@@ -3,6 +3,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'webmock/rspec'
+
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -19,6 +22,15 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+
+include WebMock::API
+
+WebMock.disable_net_connect!(:allow_localhost => true)
+
+response = File.read(Rails.root.join("spec/fixtures/weather_mock.json"))
+stub_request(:get, /api.forecast.io/).to_return(:body => response, :headers => { "Content-Type" => 'text/json' })
+
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

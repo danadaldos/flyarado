@@ -45,6 +45,7 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'shoulda-matchers'
+  gem 'webmock'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
