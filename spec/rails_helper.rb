@@ -28,8 +28,6 @@ include WebMock::API
 
 WebMock.disable_net_connect!(:allow_localhost => true)
 
-response = File.read(Rails.root.join("spec/fixtures/weather_mock.json"))
-stub_request(:get, /api.forecast.io/).to_return(:body => response, :headers => { "Content-Type" => 'text/json' })
 
 
 # Checks for pending migrations before tests are run.
