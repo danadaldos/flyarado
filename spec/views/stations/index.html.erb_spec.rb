@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "stations/index", type: :view do
   before(:each) do
-    WebMock.allow_net_connect!
     assign(:stations, [
       Station.create!(
         :name => "Name",
