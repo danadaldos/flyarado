@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418213809) do
+ActiveRecord::Schema.define(version: 20150419231502) do
 
   create_table "flow_readings", force: :cascade do |t|
     t.datetime "date_time"
-    t.decimal  "cfs"
+    t.decimal  "flow_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "station_id"
