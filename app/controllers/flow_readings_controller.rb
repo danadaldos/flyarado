@@ -1,0 +1,2 @@
+class FlowReadingsController < ApplicationController
+end

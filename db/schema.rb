@@ -11,14 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418201905) do
+ActiveRecord::Schema.define(version: 20150419231502) do
+
+  create_table "flow_readings", force: :cascade do |t|
+    t.datetime "date_time"
+    t.decimal  "flow_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "station_id"
+  end
+
+  add_index "flow_readings", ["station_id"], name: "index_flow_readings_on_station_id"
 
   create_table "stations", force: :cascade do |t|
     t.string   "name"
-    t.integer  "latitude"
-    t.integer  "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "code",       limit: 10
   end
 
   create_table "users", force: :cascade do |t|
