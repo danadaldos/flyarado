@@ -19,9 +19,6 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-include WebMock::API
-
-WebMock.disable_net_connect!(:allow_localhost => true)
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -31,10 +28,6 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  config.before :all do
-    usgs_response = File.read(Rails.root.join("spec/fixtures/station_mock.json"))
-    stub_response(:get, /waterservices.usgs.gov/).to_return(:body => usgs_response, :headers => {"Content-Type" => 'text/json'}).times(10)
-  end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
