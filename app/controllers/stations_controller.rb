@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
 
+
   # GET /stations
   # GET /stations.json
   def index
@@ -10,6 +11,11 @@ class StationsController < ApplicationController
   # GET /stations/1
   # GET /stations/1.json
   def show
+    @hash = Gmaps4rails.build_markers(@station) do |station, marker|
+      marker.lat station.latitude.to_f
+      marker.lng station.longitude.to_f
+      marker.infowindow station.name + "&nbsp;&nbsp;&nbsp;"
+    end
   end
 
   # GET /stations/new
@@ -71,4 +77,7 @@ class StationsController < ApplicationController
     def station_params
       params.require(:station).permit(:name, :latitude, :longitude)
     end
+
+
+
 end

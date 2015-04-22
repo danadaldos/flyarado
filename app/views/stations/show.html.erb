@@ -7,21 +7,37 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show station</h1>
+
+  <h2><%= @station.name %></h2>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @station.name %></dd>
-
-  <dt>Latitude:</dt>
-  <dd><%= @station.latitude %></dd>
-
-  <dt>Longitude:</dt>
-  <dd><%= @station.longitude %></dd>
-
-  <dt>Forecast</dt>
-  <dd id="w_temperature"><%= @station.weather[:temperature] %></dd>
-  <dd id="w_summary"><%= @station.weather[:summary] %></dd>
-
+  <div style="float:left;">
+    <dt>Forecast</dt>
+    <dd id="w_temperature"><%= @station.weather[:temperature] %></dd>
+    <dd id="w_summary"><%= @station.weather[:summary] %></dd>
+  </div>
+  <div style="float:left; margin-left: 20em;">
+    <dt>Stream Conditions:</dt>
+    <dd>One Thousand cfs</dd>
+  </div>
+  <div style="clear: both;"></div>
 </dl>
+<br/>
+<!-- Google Maps -->
+<div align="center" style='width: 100%; margin-bottom: 100px;'>
+  <div id="map" style='width: 65em; height: 30em;'></div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({provider: {}, internal: {id: 'map'}}, function() {
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(10)
+  });
+</script>
+<!-- End Google Maps -->
+<br/>
+<br/>

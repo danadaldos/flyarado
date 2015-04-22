@@ -5,6 +5,7 @@ gem 'savon', '~> 2.0'
 
 gem 'bootstrap-generators'
 gem 'forecast_io'
+gem 'gmaps4rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
