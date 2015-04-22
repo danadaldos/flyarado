@@ -12,18 +12,53 @@
 </div>
 
 <dl class="dl-horizontal">
-  <div style="float:left;">
-    <dt>Forecast</dt>
-    <dd id="w_temperature"><%= @station.weather[:temperature] %></dd>
+  <dt style="text-align: left;">Stream Conditions:</dt>
+  <dd>One Thousand cfs</dd>
+  <br/>
+
+  <div>
+    <dt style="text-align: left;">Current Weather:</dt>
     <dd id="w_summary"><%= @station.weather[:summary] %></dd>
+    <dd id="w_temperature"><%= @station.weather[:temperature] %>&deg; F</dd>
   </div>
-  <div style="float:left; margin-left: 20em;">
-    <dt>Stream Conditions:</dt>
-    <dd>One Thousand cfs</dd>
+  <br/>
+
+  <div style="float: left" >
+    <dt style="text-align: left;">Forecast:</dt>
   </div>
-  <div style="clear: both;"></div>
+
+  <div style="float:left;">
+    <dd><strong><%= Time.at(@station.weather[:day_two_time]).strftime("%A, %B %e") %></strong></dd>
+    <dd><%= @station.weather[:day_two_summary] %></dd>
+    <dd>High: <%= @station.weather[:day_two_high] %>&deg; F</dd>
+    <dd>Low: <%= @station.weather[:day_two_low] %>&deg; F</dd>
+  </div>
+  <div style="float:left; padding-left: 3em;">
+    <dd><strong><%= Time.at(@station.weather[:day_three_time]).strftime("%A, %B %e") %></strong></dd>
+    <dd><%= @station.weather[:day_three_summary] %></dd>
+    <dd>High: <%= @station.weather[:day_three_high] %>&deg; F</dd>
+    <dd>Low: <%= @station.weather[:day_three_low] %>&deg; F</dd>
+  </div>
+  <div style="clear:both"></div>
+  <br/>
+  <div style="float:left; padding-left: 3em;">
+    <dd><strong><%= Time.at(@station.weather[:day_four_time]).strftime("%A, %B %e") %></strong></dd>
+    <dd><%= @station.weather[:day_four_summary] %></dd>
+    <dd>High: <%= @station.weather[:day_four_high] %>&deg; F</dd>
+    <dd>Low: <%= @station.weather[:day_four_low] %>&deg; F</dd>
+  </div>
+  <div style="float:left; padding-left: 3em;">
+    <dd><strong><%= Time.at(@station.weather[:day_five_time]).strftime("%A, %B %e") %></strong></dd>
+    <dd><%= @station.weather[:day_five_summary] %></dd>
+    <dd>High: <%= @station.weather[:day_five_high] %>&deg; F</dd>
+    <dd>Low: <%= @station.weather[:day_five_low] %>&deg; F</dd>
+  </div>
+
 </dl>
+<div style="clear:both"></div>
 <br/>
+<br/>
+
 <!-- Google Maps -->
 <div align="center" style='width: 100%; margin-bottom: 100px;'>
   <div id="map" style='width: 65em; height: 30em;'></div>
