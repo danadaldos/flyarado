@@ -2,16 +2,12 @@ require 'rails_helper'
 
 
 feature 'Weather' do
-  scenario 'user can see weather current weather on show page' do
+  scenario 'user can see current weather for the only station on its page' do
+
+    Station.create! name: 'Nofish River', latitude: '39', longitude: '-104', code:'1234'
+
     visit '/'
-
-    click_link 'New Station'
-
-    fill_in 'Name', with: 'Nofish River'
-    fill_in 'Latitude', with: '39'
-    fill_in 'Longitude', with: '-104'
-
-    click_button 'Create Station'
+    click_link('Show')
 
     expect(page).to have_content("Nofish River")
 

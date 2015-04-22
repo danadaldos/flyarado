@@ -14,19 +14,21 @@
             <th>Latitude</th>
             <th>Longitude</th>
             <th>Current Weather</th>
+            <th>Flow Rate</th>
+
             <th></th>
         <th></th>
         <th></th>
       </tr>
     </thead>
-
     <tbody>
       <%= content_tag_for(:tr, @stations) do |station| %>
             <td><%= station.name %></td>
             <td><%= station.latitude %></td>
             <td><%= station.longitude %></td>
             <td><%= station.weather[:temperature]  %><br/><%= station.weather[:summary]  %></td>
-        <td><%= link_to 'Show', station %></td>
+            <td><%= station.flow_rate %></td>
+            <td><%= link_to 'Show', station %></td>
         <td><%= link_to 'Edit', edit_station_path(station) %></td>
         <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>

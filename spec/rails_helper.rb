@@ -37,6 +37,9 @@ RSpec.configure do |config|
   config.before :all do
     response = File.read(Rails.root.join("spec/fixtures/weather_mock.json"))
     stub_request(:get, /api.forecast.io/).to_return(:body => response, :headers => {"Content-Type" => 'text/json'}).times(10)
+
+    usgs_response = File.read(Rails.root.join("spec/fixtures/station_mock.json"))
+    stub_request(:get, /waterservices.usgs.gov/).to_return(:body => usgs_response, :headers => {"Content-Type" => 'text/json'}).times(10)
   end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
