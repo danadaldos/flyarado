@@ -13,4 +13,12 @@ class SessionsController < ApplicationController
       render :login
     end
   end
+
+  def destroy
+    if current_user
+      session[:id] = nil
+      redirect_to root_path,
+        notice: 'Logged out'
+    end
+  end
 end
