@@ -19,12 +19,14 @@
     </thead>
     <tbody>
       <%= content_tag_for(:tr, @stations) do |station| %>
+      <div dom_id(station)>
             <td><%= station.name %></td>
             <td><%= station.latitude %></td>
             <td><%= station.longitude %></td>
             <td><%= number_with_precision(station.current_temp, precision: 2)  %>&deg; F <br/><%= station.current_summary  %></td>
             <td><%= station.flow_rate %></td>
             <td><%= link_to 'Claim River', claim_river_path(station) %></td>
+      </div>
       <% end %>
     </tbody>
   </table>

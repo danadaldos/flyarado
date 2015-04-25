@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'pages/contact', as: 'contact'
   get 'pages/home', as: 'home'
 
-  get 'claim' => 'rivers#claim'
+  get 'claim' => 'stations#claim', as: 'claim_river'
 
   get 'login' => 'sessions#login'
   post 'login' => 'sessions#create'
