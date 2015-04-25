@@ -26,7 +26,7 @@
             <td><%= station.name %></td>
             <td><%= station.latitude %></td>
             <td><%= station.longitude %></td>
-            <td><%= station.weather[:temperature]  %><br/><%= station.weather[:summary]  %></td>
+            <td><#= station.weather[:temperature]  %><br/><#= station.weather[:summary]  %></td>
             <td><%= station.flow_rate %></td>
             <td><%= link_to 'Show', station %></td>
         <td><%= link_to 'Edit', edit_station_path(station) %></td>
