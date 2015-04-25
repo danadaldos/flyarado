@@ -1,6 +1,8 @@
 class Station < ActiveRecord::Base
   has_many :forecasts
   has_many :flow_readings
+  has_many :favorite_stations
+
 
   validates :code, uniqueness: true, presence: true, numericality: { only_integer: true}
   validates :name, presence: true

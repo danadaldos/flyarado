@@ -24,9 +24,7 @@
             <td><%= station.longitude %></td>
             <td><%= number_with_precision(station.current_temp, precision: 2)  %>&deg; F <br/><%= station.current_summary  %></td>
             <td><%= station.flow_rate %></td>
-            <td id="Show"><%= link_to 'Show', station %></td>
-        <td><%= link_to 'Edit', edit_station_path(station) %></td>
-        <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Claim River', claim_river_path(station) %></td>
       <% end %>
     </tbody>
   </table>
