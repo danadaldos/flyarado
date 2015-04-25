@@ -4,7 +4,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.where('id > 330')
+    @stations = Station.all
   end
 
   # GET /stations/1
