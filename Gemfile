@@ -1,5 +1,13 @@
 source 'https://rubygems.org'
 
+# use resque for background jobs
+gem 'resque', require: 'resque/server'
+
+# Use foreman to start multiple processes
+group :development do
+  gem 'foreman'
+end
+
 gem 'bcrypt'
 gem 'savon', '~> 2.0'
 
