@@ -18,43 +18,25 @@
 
   <div>
     <dt style="text-align: left;">Current Weather:</dt>
-    <dd id="w_summary"><%= @station.weather[:summary] %></dd>
-    <dd id="w_temperature"><%= @station.weather[:temperature] %>&deg; F</dd>
+    <dd id="w_summary"><%= @station.current_summary %></dd>
+    <dd id="w_temperature"><%= number_with_precision(@station.current_temp, precision: 2) %>&deg; F</dd>
   </div>
   <br/>
 
-  <div style="float: left" >
+  <div style="float: left">
     <dt style="text-align: left;">Forecast:</dt>
   </div>
 
-  <div style="float:left;">
-    <dd><strong><%= Time.at(@station.weather[:day_two_time]).strftime("%A, %B %e") %></strong></dd>
-    <dd><%= @station.weather[:day_two_summary] %></dd>
-    <dd>High: <%= @station.weather[:day_two_high] %>&deg; F</dd>
-    <dd>Low: <%= @station.weather[:day_two_low] %>&deg; F</dd>
-  </div>
-  <div style="float:left; padding-left: 3em;">
-    <dd><strong><%= Time.at(@station.weather[:day_three_time]).strftime("%A, %B %e") %></strong></dd>
-    <dd><%= @station.weather[:day_three_summary] %></dd>
-    <dd>High: <%= @station.weather[:day_three_high] %>&deg; F</dd>
-    <dd>Low: <%= @station.weather[:day_three_low] %>&deg; F</dd>
-  </div>
-  <div style="clear:both"></div>
-  <br/>
-  <div style="float:left; padding-left: 3em;">
-    <dd><strong><%= Time.at(@station.weather[:day_four_time]).strftime("%A, %B %e") %></strong></dd>
-    <dd><%= @station.weather[:day_four_summary] %></dd>
-    <dd>High: <%= @station.weather[:day_four_high] %>&deg; F</dd>
-    <dd>Low: <%= @station.weather[:day_four_low] %>&deg; F</dd>
-  </div>
-  <div style="float:left; padding-left: 3em;">
-    <dd><strong><%= Time.at(@station.weather[:day_five_time]).strftime("%A, %B %e") %></strong></dd>
-    <dd><%= @station.weather[:day_five_summary] %></dd>
-    <dd>High: <%= @station.weather[:day_five_high] %>&deg; F</dd>
-    <dd>Low: <%= @station.weather[:day_five_low] %>&deg; F</dd>
-  </div>
-
+    <% @dates.each do |date| %>
+      <% forecast = @station.forecast_at(date) %>
+      <dd><strong><%= forecast.date.strftime("%A, %B %e") %></strong></dd>
+      <dd><%= forecast.summary %></dd>
+      <dd>High: <%= number_with_precision(forecast.maxtemp, precision: 2) %>&deg; F</dd>
+      <dd>Low: <%= number_with_precision(forecast.mintemp, precision: 2) %>&deg; F</dd>
+    <% end %>
 </dl>
+
+
 <div style="clear:both"></div>
 <br/>
 <br/>

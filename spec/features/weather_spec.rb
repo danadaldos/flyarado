@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature 'Weather' do
   scenario 'user can see current weather for the only station on its page' do
 

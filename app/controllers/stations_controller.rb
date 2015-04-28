@@ -16,6 +16,7 @@ class StationsController < ApplicationController
       marker.lng station.longitude.to_f
       marker.infowindow station.name + "&nbsp;&nbsp;&nbsp;"
     end
+    @dates = Date.today..(Date.today+7.days)
   end
 
   # GET /stations/new

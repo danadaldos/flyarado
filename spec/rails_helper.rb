@@ -24,6 +24,10 @@ require 'webmock/rspec'
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 include WebMock::API
 
+Capybara.register_driver(:selenium) do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 WebMock.disable_net_connect!(:allow_localhost => true)
 
 # Checks for pending migrations before tests are run.
