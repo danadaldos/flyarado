@@ -60,6 +60,7 @@ group :development, :test do
   gem 'resque', require: 'resque/server'
   gem 'resque-scheduler', '~>2.5.5', require: 'resque_scheduler/server'
   gem 'dotenv'
+  gem 'database_cleaner'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Forecast, type: :model do
+  before do
+    FactoryGirl.create(:station)
+  end
   it 'should fill the database with Services::Forecaster.run' do
     expect(Forecast.count).to eq(0)
     Services::Forecaster.run

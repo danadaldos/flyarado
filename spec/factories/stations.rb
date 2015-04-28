@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :station do
-    name "MyString"
-latitude 1
-longitude 1
+    name "Orinoco River"
+latitude 7.553027
+longitude -64.9039693
   end
 
 end
