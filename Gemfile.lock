@@ -339,6 +339,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg
+  pry
   rails (= 4.2.0)
   rails_12factor
   resque

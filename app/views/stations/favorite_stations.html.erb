@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Current Weather</th>
+      <th>Flow Rate</th>
+
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= content_tag_for(:tr, @favorites) do |station| %>
+      <div dom_id(station)>
+        <td><%= station.name %></td>
+        <td><%= station.latitude %></td>
+        <td><%= station.longitude %></td>
+        <td><= station.weather[:temperature]  %><br/><#= station.weather[:summary]  %></td>
+        <td><%= station.flow_rate %></td>
+        <td><%= link_to 'Claim River', claim_station_path(station) %></td>
+      </div>
+    <% end %>
+    </tbody>
+  </table>
+</div>

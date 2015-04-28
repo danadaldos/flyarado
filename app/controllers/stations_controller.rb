@@ -32,6 +32,15 @@ class StationsController < ApplicationController
   def edit
   end
 
+# Station.find(params['id']) find a station with a given ID
+  # if not found - return a message 'Station not found / error message'
+  # if it is found, then it ads the found station to 'favorite stations'
+  # when adding found station to 'favorite stations'
+  # user ID comes from = current_user
+  # station ID comes from = found station (.find gave us this ID)
+  # if it works return "Success!"
+  # if not, return "unable to claim"
+
   # POST /stations
   # POST /stations.json
   def create
