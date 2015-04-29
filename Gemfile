@@ -5,6 +5,7 @@ gem 'savon', '~> 2.0'
 
 gem 'bootstrap-generators'
 gem 'forecast_io'
+gem 'gmaps4rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -52,7 +53,14 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'shoulda-matchers'
-
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper"
+  gem 'foreman'
+  gem 'resque', require: 'resque/server'
+  gem 'resque-scheduler', '~>2.5.5', require: 'resque_scheduler/server'
+  gem 'dotenv'
+  gem 'database_cleaner'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
