@@ -17,10 +17,10 @@
     <%= content_tag_for(:tr, @favorites) do |station| %>
       <div dom_id(station)>
         <td><%= station.name %></td>
-        <td><%= station.latitude %></td>
-        <td><%= station.longitude %></td>
-        <td><= station.weather[:temperature]  %><br/><#= station.weather[:summary]  %></td>
-        <td><%= station.flow_rate %></td>
+        <td><%= fmt_coord station.latitude %></td>
+        <td><%= fmt_coord station.longitude %></td>
+        <td><# station.weather[:temperature]  %><br/><#= station.weather[:summary]  %></td>
+        <td><%= format_flow_rate station.flow_rate %></td>
         <td><%= link_to 'Claim River', claim_station_path(station) %></td>
       </div>
     <% end %>

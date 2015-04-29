@@ -3,29 +3,23 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <%= link_to edit_station_path(@station), :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
 
-  <h2><%= @station.name %></h2>
+  <h1><%= @station.name.titleize %></h1>
 </div>
+<% if @station.favorite?(current_user) %>
+  <span class="glyphicon glyphicon-heart"></span>
+<% end %>
 
 <dl class="dl-horizontal">
   <dt style="text-align: left;">Stream Conditions:</dt>
   <dd>One Thousand cfs</dd>
   <br/>
 
-  <div>
-    <dt style="text-align: left;">Current Weather:</dt>
-    <dd id="w_summary"><%= @station.current_summary %></dd>
-    <dd id="w_temperature"><%= number_with_precision(@station.current_temp, precision: 2) %>&deg; F</dd>
-  </div>
-  <br/>
+  <dt>Latitude:</dt>
+  <dd><%= fmt_coord @station.latitude %></dd>
 
-  <div style="float: left">
-    <dt style="text-align: left;">Forecast:</dt>
-  </div>
+  <dt>Longitude:</dt>
+  <dd><%= fmt_coord @station.longitude %></dd>
 
     <% @dates.each do |date| %>
       <% forecast = @station.forecast_at(date) %>
@@ -58,3 +52,31 @@
 <!-- End Google Maps -->
 <br/>
 <br/>
+</dl>
+
+<div>
+
+  <h3>Flow Reading</h3>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Flow Rate</th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <% @station.flow_readings.last(10).each do |reading| %>
+        <tr>
+          <td><%= reading.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
+          <td><%= format_flow_rate reading.flow_rate %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

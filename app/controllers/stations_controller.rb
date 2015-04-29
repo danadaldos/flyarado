@@ -25,11 +25,24 @@ class StationsController < ApplicationController
 
   def claim
     if current_user
-      current_user.favorite_station << @stations
-      redirect_to root_path, notice: "#{@favorite_station} has been added to your list"
+      @favorite_station = FavoriteStation.new
+      @favorite_station.user_id = current_user.id
+      @favorite_station.station_id = @station.id
+      @favorite_station.save
+      redirect_to root_path,
+        notice: "Station has been added to your favorites"
+    else
+      redirect_to new_user_path,
+      notice: "You must be logged in to choose a favorite"
     end
-  # GET /stations/1/edit
-  def edit
+   # @station.favorite(current_user)
+
+
+      # if current_user
+      # binding.pry
+      # current_user.favorite_station << @stations
+      # redirect_to root_path, notice: "#{@favorite_station} has been added to your list"
+      # end
   end
 
 # Station.find(params['id']) find a station with a given ID

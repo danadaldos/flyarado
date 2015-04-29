@@ -1,5 +1,6 @@
 
   station = Station.create(name: 'Boulder', latitude: 1, longitude: 2, code:1)
+            FavoriteStation.create(user_id: 3, station_id: 3)
 
 
 

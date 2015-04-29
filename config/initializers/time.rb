@@ -1,0 +1,1 @@
+Time.zone_default = 'America/Denver'
