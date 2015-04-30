@@ -5,6 +5,12 @@ class StationsController < ApplicationController
   # GET /stations.json
   def index
     @stations = Station.all
+
+    @hash = Gmaps4rails.build_markers(@station) do |station, marker|
+      marker.lat station.latitude.to_f
+      marker.lng station.longitude.to_f
+      marker.infowindow station.name + "&nbsp;&nbsp;&nbsp;"
+    end
   end
 
   # GET /stations/1

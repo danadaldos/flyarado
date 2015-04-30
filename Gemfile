@@ -6,7 +6,7 @@ gem 'savon', '~> 2.0'
 gem 'bootstrap-generators'
 gem 'forecast_io'
 gem 'gmaps4rails'
-
+gem 'will_paginate'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

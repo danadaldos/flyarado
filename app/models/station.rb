@@ -15,7 +15,6 @@ class Station < ActiveRecord::Base
   validates :latitude, numericality: true
 # validates :stream_flow, presence: true
 
-
   def current_forecast
     @current_forecast ||= ForecastIO.forecast(latitude, longitude)
   end
@@ -38,7 +37,6 @@ class Station < ActiveRecord::Base
       first_reading.flow_rate
     end
   end
-
 
   def favorite?(user)
     favorite_stations.where(user: user).count > 0
