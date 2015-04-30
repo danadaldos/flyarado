@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  resources :stations
+  resources :stations do
+    member do
+      post 'claim' => 'stations#claim'      # => 'stations#claim', as: 'claim_river'
+    end
+  end
 
+
+
+  get 'stations/favorite_stations' => 'stations#claim'
   get 'pages/about', as: 'about'
   get 'pages/contact', as: 'contact'
   get 'pages/home', as: 'home'
+
 
   get 'login' => 'sessions#login'
   post 'login' => 'sessions#create'
