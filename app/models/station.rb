@@ -1,5 +1,4 @@
 class Station < ActiveRecord::Base
-  has_many :weathers
   has_many :forecasts
   has_many :flow_readings
   has_many :favorite_stations
@@ -15,6 +14,7 @@ class Station < ActiveRecord::Base
   validates :longitude, numericality: true
   validates :latitude, numericality: true
 # validates :stream_flow, presence: true
+
 
   def current_forecast
     @current_forecast ||= ForecastIO.forecast(latitude, longitude)
@@ -39,17 +39,7 @@ class Station < ActiveRecord::Base
     end
   end
 
-# def current_weather
-#  @current_weather ||= weathers.order(created_at: :desc).first
-# end
-#
-# def current_temp
-#   @current_weather.
-# end
-#
-# def current_summary
-#
-# end
+
   def favorite?(user)
     favorite_stations.where(user: user).count > 0
   end

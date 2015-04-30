@@ -12,28 +12,16 @@
 
 <dl class="dl-horizontal">
   <dt style="text-align: left;">Stream Conditions:</dt>
-  <dd>One Thousand cfs</dd>
+  <br/>
   <br/>
 
   <dt>Latitude:</dt>
-  <dd><%= fmt_coord @station.latitude %></dd>
-
+  <dd><%= fmt_coord number_with_precision(@station.latitude, precision: 4) %></dd>
   <dt>Longitude:</dt>
-  <dd><%= fmt_coord @station.longitude %></dd>
-
-    <% @dates.each do |date| %>
-      <% forecast = @station.forecast_at(date) %>
-      <dd><strong><%= forecast.date.strftime("%A, %B %e") %></strong></dd>
-      <dd><%= forecast.summary %></dd>
-      <dd>High: <%= number_with_precision(forecast.maxtemp, precision: 2) %>&deg; F</dd>
-      <dd>Low: <%= number_with_precision(forecast.mintemp, precision: 2) %>&deg; F</dd>
-    <% end %>
+  <dd><%= fmt_coord number_with_precision(@station.longitude, precision: 4) %></dd>
+  <br/>
 </dl>
-
-
 <div style="clear:both"></div>
-<br/>
-<br/>
 
 <!-- Google Maps -->
 <div align="center" style='width: 100%; margin-bottom: 100px;'>
@@ -50,8 +38,7 @@
   });
 </script>
 <!-- End Google Maps -->
-<br/>
-<br/>
+
 </dl>
 
 <div>
@@ -70,13 +57,34 @@
       </thead>
       <tbody>
       <% @station.flow_readings.last(10).each do |reading| %>
-        <tr>
-          <td><%= reading.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
-          <td><%= format_flow_rate reading.flow_rate %></td>
-        </tr>
+        <% if @station.flow_readings.any? %>
+          <tr>
+            <td><%= reading.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
+            <td><%= format_flow_rate reading.flow_rate %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
+    <br/>
+    <br/>
+
+    <h3>Forecast:</h3>
+    <br/>
+
+    <div style="width: 100%; clear: both; margin-left: 2em;">
+      <% @dates.each do |date| %>
+        <% forecast = @station.forecast_at(date) %>
+        <% if @station.forecasts.any? %>
+          <div style="width: 220px; margin-left: 1em; margin-bottom: 2em; padding-bottom: 1em; padding-left: 1em; padding-right: 1em; float: left; border-style: dotted; border-width: 1px; border-color: #dddddd">
+            <dd style="margin-bottom: 10px; text-align: center"><h4><strong><%= forecast.date.strftime("%A, %B %e") %></strong></h4></dd>
+            <dd><strong>High:</strong> <%= number_with_precision(forecast.maxtemp, precision: 2) %> &deg;F</dd>
+            <dd style="margin-bottom: 10px"><strong>Low:</strong> <%= number_with_precision(forecast.mintemp, precision: 2) %> &deg;F</dd>
+            <dd style="margin-bottom: 6px; width: 86%;"><%= forecast.summary %></dd>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
