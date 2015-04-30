@@ -29,7 +29,7 @@
         <td><%= fmt_coord station.latitude %></td>
         <td><%= fmt_coord station.longitude %></td>
         <td><= station.weather[:temperature] %><br/>
-          <#= station.weather[:summary]  %>
+          <= station.weather[:summary]  %>
         </td>
         <td><%= station.flow_readings.last.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
         <td><%= format_flow_rate station.flow_readings.last.flow_rate %></td>
