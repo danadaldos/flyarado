@@ -13,7 +13,7 @@
       <th>Name</th>
       <th>Latitude</th>
       <th>Longitude</th>
-      <th>Today's Weather</th>
+      <th style="width: 3em;">Today's Weather</th>
       <th>Most Recent Reading</th>
       <th>Flow Rate</th>
 
@@ -29,18 +29,18 @@
         <td><%= fmt_coord station.latitude.to_f %></td>
         <td><%= fmt_coord station.longitude.to_f %></td>
         <% if station.forecasts.any? %>
-          <td>
+          <td style="width: 3em;">
             <strong>High: </strong> <%= number_with_precision(station.forecasts.first.maxtemp, precision: 2) %> &deg;F<br/>
             <strong>Low: </strong><%= number_with_precision(station.forecasts.first.mintemp.to_f, precision: 2) %> &deg;F
           </td>
         <% end %>
-        <% if @station != nil %>
-          <td><%= station.flow_readings.last.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
-          <td><%= format_flow_rate station.flow_readings.last.flow_rate %></td>
+
+          <td><%= station.flow_readings.first.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
+          <td><%= format_flow_rate station.flow_readings.first.flow_rate %></td>
           <% unless station.favorite?(current_user) %>
             <td><%= button_to 'Claim River', claim_station_path(station) %></td>
           <% end %>
-        <% end %>
+
       </div>
     <% end %>
     </tbody>
