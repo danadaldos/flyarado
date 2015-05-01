@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options host: 'localhost', port: 3000
+  resources :stations
   resources :stations do
     member do
       post 'claim' => 'stations#claim'      # => 'stations#claim', as: 'claim_river'
@@ -23,6 +25,9 @@ Rails.application.routes.draw do
   root 'stations#index'
 
   mount Resque::Server.new, at: "/resque"
+  get 'verification/:token', to: 'users#verify', as: 'verify_email'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
