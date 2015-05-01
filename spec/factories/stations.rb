@@ -5,5 +5,4 @@ FactoryGirl.define do
     longitude { Faker::Address.longitude }
     code { Faker::Code.ean }
   end
-
 end
