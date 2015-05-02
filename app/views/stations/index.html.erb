@@ -48,17 +48,19 @@
               <% end %>
             </td>
 
-            <td><%= station.flow_readings.first.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
-            <td><%= format_flow_rate station.flow_readings.first.flow_rate %></td>
-            <td>
-              <% unless station.favorite?(current_user) %>
-                  <%= button_to 'Claim', claim_station_path(station) %>
-              <% end %>
-            </td>
-          </div>
-    <% end %>
+          <td><%= station.flow_readings.first.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
+          <td><%= format_flow_rate station.flow_readings.first.flow_rate %></td>
+          <td>
+            <% if station.favorite?(current_user) %>
+            <%= button_to 'Unclaim', unclaim_station_path(station) %>
+              <% else %>
+              <%= button_to 'Claim', claim_station_path(station) %>
+          <% end %>
+          </td>
 
-    </tr>
+
+        </div>
+    <% end %>
     </tbody>
   </table>
 </div>

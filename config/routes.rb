@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :stations do
     member do
       post 'claim' => 'stations#claim'      # => 'stations#claim', as: 'claim_river'
+      post 'unclaim' => 'stations#unclaim'
     end
   end
 
