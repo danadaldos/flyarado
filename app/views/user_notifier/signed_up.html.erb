@@ -1,6 +1,7 @@
 Hello <%= @user.first_name.titleize %>,
 
 You recently created a <%= t('site_name') %> account
+<p/>
 using your email address of <%= @user.email %>.
 <p/>
 To verify your email address, please open the following link:
@@ -11,5 +12,5 @@ If the link does not work, please login to your account
 and enter this token:
 <p/>
 <%= @user.token %>
-v
+
 Thank you for visiting <%= t('site_name') %>.
