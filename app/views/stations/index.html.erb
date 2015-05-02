@@ -1,7 +1,7 @@
 <div class="page-header">
   <%= link_to new_station_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Station
+      <span class="glyphicon glyphicon-plus"></span>
+      New Station
   <% end %>
   <h1>Listing stations</h1>
 </div>
@@ -18,21 +18,29 @@
       <th>Flow Rate</th>
 
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
     </thead>
     <tbody>
-      <%= content_tag_for(:tr, @stations) do |station| %>
-            <td><%= station.name %></td>
-            <td><%= station.latitude %></td>
-            <td><%= station.longitude %></td>
-            <td><%= station.weather[:temperature]  %><br/><%= station.weather[:summary]  %></td>
-            <td><%= station.flow_rate %></td>
-            <td><%= link_to 'Show', station %></td>
-        <td><%= link_to 'Edit', edit_station_path(station) %></td>
-        <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+    <%= content_tag_for(:tr, @stations) do |station| %>
+        <div dom_id(station)>
+          <td><%= link_to station.name, station %></td>
+          <td><%= fmt_coord station.latitude.to_f %></td>
+          <td><%= fmt_coord station.longitude.to_f %></td>
+          <td style="width: 3em;">
+            <% if station.forecasts.any? %>
+                <strong>High: </strong> <%= number_with_precision(station.forecasts.first.maxtemp, precision: 2) %> &deg;F<br/>
+                <strong>Low: </strong><%= number_with_precision(station.forecasts.first.mintemp.to_f, precision: 2) %> &deg;F
+            <% end %>
+          </td>
+
+          <td><%= station.flow_readings.first.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
+          <td><%= format_flow_rate station.flow_readings.first.flow_rate %></td>
+          <% unless station.favorite?(current_user) %>
+              <td><%= button_to 'Claim River', claim_station_path(station) %></td>
+          <% end %>
+
+        </div>
+    <% end %>
     </tbody>
   </table>
 </div>
