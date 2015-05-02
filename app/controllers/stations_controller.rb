@@ -6,10 +6,11 @@ class StationsController < ApplicationController
   def index
     @stations = Station.joins(:flow_readings).order('flow_readings.flow_rate DESC').uniq
 
-    @hash = Gmaps4rails.build_markers(@station) do |station, marker|
+    @hash = Gmaps4rails.build_markers(@stations) do |station, marker|
       marker.lat station.latitude.to_f
       marker.lng station.longitude.to_f
-      marker.infowindow station.name + "&nbsp;&nbsp;&nbsp;"
+      marker.infowindow(
+         "#{station.name} + &nbsp;&nbsp;&nbsp;" )
     end
   end
 

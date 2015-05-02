@@ -1,8 +1,21 @@
 <div class="page-header">
-  <%= link_to new_station_path, :class => 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      New Station
-  <% end %>
+  <!-- Google Maps -->
+  <div align="center" style="width: 100%; margin-bottom: 4em; ; margin-top: 1em;">
+    <div id="map" style='width: 60em; height: 42em;'></div>
+  </div>
+
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({provider: {}, internal: {id: 'map'}}, function() {
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(7)
+    });
+  </script>
+  <!-- End Google Maps -->
+
+
   <h1>Listing stations</h1>
 </div>
 
