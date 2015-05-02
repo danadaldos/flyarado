@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
     UserNotifier.signed_up(self).deliver_now
   end
 
+  def update_email
+    UserNotifier.favorite_updates(self).deliver_now
+  end
+
 end
