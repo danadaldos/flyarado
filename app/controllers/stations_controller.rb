@@ -41,6 +41,7 @@ class StationsController < ApplicationController
       @favorite_station.user_id = current_user.id
       @favorite_station.station_id = @station.id
       @favorite_station.save
+      current_user.update_email
       redirect_to root_path,
         notice: "Station has been added to your favorites"
     else

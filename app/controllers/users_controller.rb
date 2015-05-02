@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.needs_verification!
+      UserNotifier.welcome(@user).deliver_now
       session[:id] = @user.id
       redirect_to root_path,
         notice: "Thanks for signing up, #{ @user.first_name }"
