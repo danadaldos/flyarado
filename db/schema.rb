@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426193046) do
+ActiveRecord::Schema.define(version: 20150501023631) do
 
   create_table "favorite_stations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20150426193046) do
     t.text     "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "verified_email"
+    t.string   "token"
   end
 
 end

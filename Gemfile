@@ -7,6 +7,7 @@ gem 'bootstrap-generators'
 gem 'forecast_io'
 gem 'gmaps4rails'
 gem 'will_paginate'
+gem 'rspec-collection_matchers'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -64,6 +65,7 @@ group :development, :test do
   gem 'resque-scheduler', '~>2.5.5', require: 'resque_scheduler/server'
   gem 'dotenv-rails', :require => 'dotenv/rails-now'
   gem 'database_cleaner'
+  gem 'letter_opener'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
