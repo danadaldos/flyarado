@@ -4,6 +4,7 @@ gem 'bcrypt'
 gem 'savon', '~> 2.0'
 
 gem 'bootstrap-generators'
+gem 'will_paginate-bootstrap'
 gem 'forecast_io'
 gem 'gmaps4rails'
 gem 'will_paginate'

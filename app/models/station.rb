@@ -4,6 +4,10 @@ class Station < ActiveRecord::Base
   has_many :favorite_stations
   has_many :users, through: :favorite_stations
 
+  # Pagination
+
+  self.per_page = 10
+
   def favorite(user)
     favorite_stations.first_or_create(user: user) # { |favorite_station|}
   end

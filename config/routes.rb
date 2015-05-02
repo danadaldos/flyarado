@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  root 'stations#index'
 
   get 'stations/favorite_stations' => 'stations#claim'
   get 'pages/about', as: 'about'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  root 'stations#index'
+
 
   mount Resque::Server.new, at: "/resque"
   get 'verification/:token', to: 'users#verify', as: 'verify_email'

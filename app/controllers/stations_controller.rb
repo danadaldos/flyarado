@@ -4,7 +4,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.joins(:flow_readings).order('flow_readings.flow_rate DESC').uniq
+    @stations = Station.joins(:flow_readings).order('flow_readings.flow_rate DESC').uniq.paginate(page: params[:page])
 
     @hash = Gmaps4rails.build_markers(@stations) do |station, marker|
       marker.lat station.latitude.to_f
