@@ -58,7 +58,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~>2.35.1'
   gem "chromedriver-helper"
   gem 'foreman'
   gem 'resque', require: 'resque/server'

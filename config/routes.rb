@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   default_url_options host: 'localhost', port: 3000
-  resources :stations
   resources :stations do
     member do
       post 'claim' => 'stations#claim'      # => 'stations#claim', as: 'claim_river'
