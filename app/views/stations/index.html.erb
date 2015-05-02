@@ -35,7 +35,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @stations.each do |station| %>
+    <% @stations_paginated.each do |station| %>
         <tr>
           <div dom_id(station)>
             <td><%= link_to station.name, station %></td>
@@ -63,4 +63,4 @@
   </table>
 </div>
 
-<%= will_paginate @stations, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @stations_paginated, renderer: BootstrapPagination::Rails %>
