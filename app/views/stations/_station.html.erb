@@ -2,17 +2,13 @@
   <td><%= link_to station.name, station %></td>
   <td><%= fmt_coord station.latitude.to_f %></td>
   <td><%= fmt_coord station.longitude.to_f %></td>
-  <% if station.forecasts.any? %>
-    <td style="width: 3em;">
-      <strong>High: </strong> <%= number_with_precision(station.forecasts.first.maxtemp, precision: 2) %> &deg;F<br/>
-      <strong>Low: </strong><%= number_with_precision(station.forecasts.first.mintemp.to_f, precision: 2) %> &deg;F
-    </td>
-  <% end %>
+  <td style="width: 3em;">
+    <% if station.forecasts.any? %>
+        <strong>High: </strong> <%= number_with_precision(station.forecasts.first.maxtemp, precision: 2) %> &deg;F<br/>
+        <strong>Low: </strong><%= number_with_precision(station.forecasts.first.mintemp.to_f, precision: 2) %> &deg;F
 
+    <% end %>
+  </td>
   <td><%= station.flow_readings.first.date_time.in_time_zone.strftime("%A %e %B %Y,%I:%M:%S %Z") %></td>
   <td><%= format_flow_rate station.flow_readings.first.flow_rate %></td>
-  <% unless station.favorite?(user) %>
-    <td><%= button_to 'Claim River', claim_station_path(station) %></td>
-  <% end %>
-
 </div>
