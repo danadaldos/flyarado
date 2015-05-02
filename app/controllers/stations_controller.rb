@@ -1,5 +1,5 @@
 class StationsController < ApplicationController
-  before_action :set_station, only: [:show, :edit, :update, :destroy, :claim]
+  before_action :set_station, only: [:show, :edit, :update, :destroy, :claim, :unclaim]
 
   # GET /stations
   # GET /stations.json
@@ -14,10 +14,6 @@ class StationsController < ApplicationController
       marker.infowindow render_to_string(:partial => "/layouts/partials/infowindow", :locals => { :station  => station})
     end
   end
-
-
-
-
 
   # GET /stations/1
   # GET /stations/1.json
@@ -56,6 +52,12 @@ class StationsController < ApplicationController
       # current_user.favorite_station << @stations
       # redirect_to root_path, notice: "#{@favorite_station} has been added to your list"
       # end
+  end
+
+  def unclaim
+    @station.remove_favorite(current_user)
+    redirect_to root_path,
+      notice: 'Station has been removed from your favorites'
   end
 
 # Station.find(params['id']) find a station with a given ID

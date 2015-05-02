@@ -12,6 +12,9 @@ class Station < ActiveRecord::Base
     favorite_stations.first_or_create(user: user) # { |favorite_station|}
   end
 
+  def remove_favorite(user)
+      favorite_stations.where(user: user).destroy_all
+  end
 
   validates :code, uniqueness: true, presence: true, numericality: {only_integer: true}
   validates :name, presence: true
