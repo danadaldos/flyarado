@@ -15,6 +15,19 @@ class StationsController < ApplicationController
     end
   end
 
+  def favorites
+    @stations = current_user.stations
+
+    @stations_paginated = current_user.stations.paginate(page: params[:page])
+
+    @hash = Gmaps4rails.build_markers(@stations) do |station, marker|
+      marker.lat station.latitude.to_f
+      marker.lng station.longitude.to_f
+      marker.infowindow render_to_string(:partial => "/layouts/partials/infowindow", :locals => { :station  => station})
+    end
+  end
+
+
   # GET /stations/1
   # GET /stations/1.json
   def show
@@ -99,6 +112,8 @@ class StationsController < ApplicationController
     end
   end
 end
+
+
 
 private
 # Use callbacks to share common setup or constraints between actions.

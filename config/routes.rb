@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       post 'claim' => 'stations#claim'      # => 'stations#claim', as: 'claim_river'
       post 'unclaim' => 'stations#unclaim'
     end
+    collection do
+      get 'favorites' => 'stations#favorites'
+    end
   end
 
   root 'stations#index'

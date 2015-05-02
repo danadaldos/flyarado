@@ -1,0 +1,51 @@
+<div class="page-header">
+  <!-- Google Maps -->
+  <div align="center" style="width: 100%; margin-bottom: 4em; ; margin-top: 1em;">
+    <div id="map" style='width: 60em; height: 42em;'></div>
+  </div>
+
+  <script type="text/javascript">
+      handler = Gmaps.build('Google');
+      handler.buildMap({provider: {}, internal: {id: 'map'}}, function() {
+          markers = handler.addMarkers(<%=raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(7)
+      });
+
+  </script>
+  <!-- End Google Maps -->
+
+
+  <h1>Listing stations</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th style="width: 3em;">Today's Weather</th>
+      <th>Most Recent Reading</th>
+      <th>Flow Rate</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= content_tag_for(:tr, @stations_paginated) do |station| %>
+        <%= render partial: 'stations/station', locals: {station: station, user: @user} %>
+        <td>
+          <% if station.favorite?(current_user) %>
+              <%= button_to 'Unclaim', unclaim_station_path(station) %>
+          <% else %>
+              <%= button_to 'Claim', claim_station_path(station) %>
+          <% end %>
+        </td>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @stations_paginated, renderer: BootstrapPagination::Rails %>
